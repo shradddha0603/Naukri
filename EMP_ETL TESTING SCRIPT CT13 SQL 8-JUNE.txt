@@ -1,0 +1,493 @@
+Use EMP_ETL
+GO
+
+--Source Tables
+
+Select * from EMP_DTS_SRC1; 
+ 
+Select * from EMP_DTS_SRC2;
+
+Select * from EMP_DTS_SRC3; 
+
+
+--Stagging Table
+Select * from EMP_DTS_STG;
+
+--Target Table
+Select * from EMP_DTS_TRG;
+
+
+--Table which is recording last ETL run time
+Select * from ETLUpdateTime;
+
+
+--ETL Code
+EXEC Emp_ETL_Code;
+
+
+--To Truncate data in all table
+
+Truncate Table EMP_DTS_SRC1 ;
+Truncate Table EMP_DTS_SRC2 ;
+Truncate Table EMP_DTS_SRC3 ;
+Truncate Table EMP_DTS_STG ;
+Truncate Table EMP_DTS_TRG ;
+
+
+
+--Test Data
+
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Anderson','Slade','Jakeem',923,'1989-09-30','Female','2016-07-19'),('Buckley','Clayton','Judah',1048,'1981-02-04','Female','2019-11-23'),('Thomas','Philip','Chandler',1026,'1984-08-19','Female','1999-07-04'),('Cleveland','Erin','Yoko',1195,'1983-01-27','Female','2006-09-01'),('Bender','Zenia','Daquan',939,'1978-01-09','Male','1988-04-10'),('Bennett','Matthew','Nora',1053,'1983-06-12','Unknown','2003-11-22'),('Cherry','Morgan','Hannah',1189,'1976-07-24','Female','2017-09-30'),('Bruce','Caesar','Gannon',1360,'1979-11-16','Male','2020-08-19'),('Barlow','Davis','Lunea',1380,'1976-09-09','Unknown','2002-03-10'),('Lang','Rahim','Brynne',989,'1979-07-16','Female','2016-01-02');
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Cline','Lareina','Doris',1473,'1983-05-03','Female','2021-01-14'),('Larson','Isaiah','Noah',1415,'1976-07-12','Male','2019-09-11'),('Wise','Randall','Simon',1232,'1986-12-28','Male','1991-02-20'),('Buckner','Caesar','Carl',959,'1975-01-27','Male','2006-05-24'),('Leon','Alexander','Noah',1150,'1976-09-06','Female','2011-04-15'),('Anthony','Tallulah','Clark',1092,'1989-07-03','Female','1993-12-26'),('Camacho','Hoyt','Maile',1412,'1981-04-28','Female','1990-09-16'),('Weaver','Regina','Kessie',965,'1978-05-02','Female','2003-03-12'),('Boyle','Silas','Kim',1327,'1982-01-02','Male','2019-04-18'),('Christian','Hayfa','Garth',1295,'1977-11-21','Female','2002-09-10');
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Munoz','Charlotte','Hedda',1363,'1979-12-16','Female','1995-02-12'),('Kim','Craig','Howard',1040,'1987-06-20','Male','1992-07-09'),('Higgins','Castor','Shana',1220,'1988-06-29','Female','2011-05-28'),('Bartlett','Charity','Lacey',1155,'1979-03-19','Female','2008-12-29'),('Dudley','Yasir','Brenden',1018,'1980-10-30','Female','2003-10-01'),('Duncan','Sydney','Ivy',1098,'1977-08-18','Male','2018-04-03'),('Wilkinson','Armand','Macon',1438,'1987-12-07','Male','2004-02-19'),('Ellison','Ivory','Georgia',1259,'1981-07-29','Female','2012-02-23'),('Rush','Robert','Marny',1394,'1986-09-26','Female','1999-12-13'),('Oneil','Wesley','Dexter',1171,'1986-02-09','Female','2002-10-05');
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Lindsey','Fatima','Fletcher',920,'1989-07-01','Female','2020-11-05'),('Rivera','Hamilton','Kellie',978,'1987-02-19','Male','2014-06-11'),('Moody','Lacy','Amelia',994,'1985-03-14','Female','1992-01-31'),('Ingram','Leandra','Echo',1259,'1980-09-23','Female','1993-06-07'),('Mcgee','Halla','Dora',916,'1977-11-21','Female','2004-06-12'),('Wheeler','Rowan','Violet',1475,'1984-11-05','Female','2021-01-01'),('Fox','Ayanna','Jerome',1177,'1974-12-26','Female','2015-10-21'),('Baird','Kirsten','Allistair',1046,'1988-11-19','Female','2014-12-29'),('Holden','Abra','Baker',1220,'1976-03-26','Female','1993-08-03'),('Clayton','Indira','Minerva',1172,'1975-11-13','Female','2004-12-13');
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Love','Solomon','Skyler',1390,'1989-12-05','Female','2009-05-04'),('Cross','Ariana','Keegan',1013,'1985-01-17','Male','2011-10-25'),('Estrada','Amity','Maggy',1131,'1983-02-08','Male','1990-04-25'),('Lamb','Quinn','Dacey',1436,'1982-01-22','Female','1988-12-29'),('Winters','Aristotle','Eaton',1425,'1982-10-20','Male','2011-07-12'),('Suarez','Harriet','Rudyard',1179,'1981-02-17','Male','2018-12-05'),('Mclean','Alea','Imelda',1422,'1980-03-15','Male','1996-12-07'),('Soto','Danielle','Callie',977,'1974-05-05','Female','2002-06-11'),('Bell','Hiroko','Sophia',1063,'1974-07-25','Male','2004-04-06'),('Oneil','Tamara','Bevis',1227,'1975-07-23','Female','2020-04-14');
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Gilliam','Baker','Uriah',1274,'1985-05-17','Female','1992-12-31'),('Carver','Bell','Rae',1228,'1977-01-14','Male','1994-01-24'),('Summers','Hannah','Laura',1023,'1989-10-07','Female','1994-06-23'),('Blackwell','Summer','Rahim',1015,'1978-09-28','Male','1990-05-18'),('Small','Sloane','Moses',1092,'1988-02-08','Male','1993-12-18'),('Hunt','Kibo','Brett',997,'1986-06-01','Female','1989-04-04'),('Velazquez','Ashely','Wylie',1367,'1983-07-02','Male','1989-07-27'),('Alston','Plato','Serina',1373,'1974-10-26','Male','1993-12-26'),('Castaneda','Raymond','Yuri',1283,'1977-12-18','Male','2008-04-26'),('Merritt','Raja','Keegan',1094,'1980-06-21','Female','1988-07-11');
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Castillo','Micah','Byron',987,'1983-07-15','Male','2017-01-14'),('Mcintyre','Hakeem','Phyllis',1457,'1989-09-20','Female','1996-09-01'),('Butler','Aaron','Colby',1288,'1975-04-19','Male','2005-02-04'),('Patterson','Ferris','Reed',1473,'1986-01-24','Female','1996-04-15'),('Sexton','Georgia','David',1086,'1989-01-03','Female','2000-05-29'),('Haney','Miranda','Ivan',1475,'1984-08-09','Male','2015-02-04'),('Fisher','Vivien','Fallon',1100,'1985-08-09','Male','2000-05-17'),('Lester','Yetta','Elijah',1283,'1980-12-19','Female','2000-07-13'),('Maddox','Aaron','Ann',1326,'1984-11-13','Male','2013-11-14'),('Nieves','Chandler','Dennis',1242,'1978-12-07','Female','1991-11-21');
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Harvey','Melinda','Hop',1330,'1988-01-13','Male','1987-09-08'),('Cummings','Ocean','Malik',1369,'1984-05-21','Female','2008-02-23'),('Kramer','Judah','Melyssa',974,'1982-03-18','Male','1993-03-04'),('Charles','Chiquita','Erich',1282,'1982-04-18','Female','2019-01-03'),('Talley','Montana','Aristotle',1027,'1983-04-01','Female','1990-02-16'),('Kane','Rylee','Kane',1198,'1982-08-13','Female','2009-09-21'),('Cline','Cullen','Jerome',1195,'1987-12-27','Male','1997-08-13'),('Bonner','Regan','Virginia',1109,'1978-09-13','Female','2021-04-24'),('Barnes','Allen','Fiona',1101,'1983-07-17','Male','2018-11-07'),('Weiss','Uriel','Jennifer',1346,'1975-08-08','Male','2014-12-10');
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Collier','Finn','Karina',1083,'1987-05-13','Female','2016-05-20'),('Noble','Claudia','Plato',1372,'1988-10-05','Male','2004-06-25'),('Wall','Odysseus','Branden',1466,'1982-04-01','Male','1994-12-29'),('Wilder','Noelle','Idona',1314,'1977-03-29','Female','2010-02-08'),('Kennedy','Anastasia','Ocean',1046,'1979-03-19','Male','2001-11-07'),('Mcleod','Jason','Dalton',1357,'1982-05-28','Male','2008-09-06'),('Hodge','Hasad','Jason',1039,'1987-09-03','Female','1995-10-20'),('Winters','Darius','Zeus',957,'1975-09-10','Male','2003-08-01'),('Gilliam','Cullen','Virginia',1168,'1988-04-06','Female','2007-06-29'),('Burnett','Lewis','Lyle',1391,'1974-12-16','Male','1995-07-22');
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Vance','Jin','Anthony',1393,'1985-08-27','Male','1997-09-05'),('Norman','Kellie','Buckminster',1060,'1974-05-15','Male','2013-04-20'),('Orr','Xanthus','Ezekiel',1205,'1975-02-13','Female','1990-10-06'),('May','Tashya','Hop',1061,'1981-12-21','Female','2012-06-14'),('Blair','Laith','Isaiah',1142,'1985-01-14','Female','2000-10-28'),('Bruce','Lars','Owen',1476,'1984-07-16','Female','2021-02-21'),('Dejesus','Asher','Abigail',1066,'1987-09-12','Female','2020-03-05'),('Ayala','Alden','Kaden',1056,'1983-07-07','Male','2011-01-21'),('Carr','Wynter','Savannah',984,'1983-01-12','Female','2006-02-05'),('Dean','Bianca','Emery',1293,'1977-06-07','Male','1999-06-21');
+INSERT INTO EMP_DTS_SRC2([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Brewer','Alyssa','Levi',1462,'1989-05-13','F','1994-07-01'),('Jensen','Emma','Kasper',1331,'1975-07-25','F','2018-12-11'),('Mueller','Judah','Raven',1039,'1975-04-23','F','1989-07-17'),('Daniel','Orli','Denton',1387,'1987-08-15','F','1991-10-23'),('Ramirez','Kyle','Laurel',1270,'1982-08-25','M','1996-05-25'),('Stokes','Sharon','Jacob',951,'1977-09-14','M','2009-03-09'),('Jenkins','Yoko','Omar',1196,'1987-02-08','F','1994-01-03'),('Ward','Quinn','Carson',1357,'1974-06-08','M','1991-06-03'),('Goodman','Idona','Wynter',1059,'1990-01-24','F','1993-03-18'),('Cantrell','Gemma','Vivien',1439,'1987-02-14','F','1995-04-16');
+INSERT INTO EMP_DTS_SRC2([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Harding','Ferdinand','Winter',1066,'1975-06-15','M','2005-10-30'),('Odonnell','Ashton','Uta',1182,'1981-01-02','M','2009-01-23'),('Curry','Lillian','Mark',1430,'1985-02-02','F','2004-06-05'),('Coleman','Colorado','Ferdinand',1500,'1985-07-01','M','2016-04-01'),('Rios','Rogan','Quinn',999,'1978-11-13','M','2016-03-25'),('Price','Abdul','Mikayla',1488,'1978-10-10','F','2007-07-31'),('Owens','Tatyana','Timon',1070,'1979-02-09','M','1999-04-25'),('Pruitt','Nichole','Melodie',945,'1974-12-31','F','1999-06-11'),('Henry','Zachary','Blossom',1187,'1990-04-29','F','2018-05-31'),('Shepard','Kendall','Axel',1206,'1980-11-21','M','2001-10-08');
+INSERT INTO EMP_DTS_SRC2([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Francis','Susan','Adrienne',917,'1975-06-26','M','2015-04-06'),('Cote','Michael','Stephen',1006,'1980-09-22','M','2016-03-22'),('Guy','Karleigh','Kamal',1178,'1989-10-13','F','2004-02-15'),('Donaldson','Nerea','Audrey',1353,'1989-02-10','F','2006-07-15'),('Newman','Gannon','William',1302,'1983-06-26','M','2010-04-29'),('Baker','April','Willow',931,'1989-06-15','M','1989-01-29'),('Madden','Velma','Olga',1221,'1976-08-16','F','1998-10-26'),('Figueroa','Rowan','Christian',1050,'1988-09-09','M','2002-07-24'),('Booth','Amethyst','Kirk',910,'1978-09-26','M','2000-09-16'),('Heath','Aiko','Brenden',1266,'1980-05-16','M','2009-08-15');
+INSERT INTO EMP_DTS_SRC2([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Vaughan','Victoria','Aristotle',1389,'1988-05-10','F','2002-10-02'),('Harding','Jessica','Moses',1153,'1978-01-22','F','1999-06-08'),('Cummings','Avye','Elijah',946,'1987-07-15','F','2014-10-06'),('Thornton','Skyler','Perry',1146,'1989-04-16','F','2003-01-25'),('George','Lila','Timothy',1467,'1983-02-13','M','2011-08-11'),('Melton','Damian','Chaim',1073,'1976-06-13','F','2009-03-27'),('Delgado','Reese','Amethyst',1458,'1975-06-04','F','1996-01-31'),('Hays','Freya','Mari',970,'1982-02-02','F','2011-01-27'),('Knapp','Brock','Naida',1364,'1977-11-06','F','2002-04-05'),('Dixon','Nathaniel','Quon',1062,'1975-07-27','F','1995-01-18');
+INSERT INTO EMP_DTS_SRC2([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Casey','Quinn','Josephine',1063,'1985-02-08','M','2001-02-19'),('Hoover','Fuller','Adara',1033,'1985-09-04','M','1996-06-06'),('Pearson','Isadora','Mira',1031,'1988-03-22','M','1987-11-22'),('Snider','Giselle','Ursula',1430,'1977-12-30','F','2008-06-04'),('Carey','Alyssa','Kristen',1309,'1977-02-10','M','2009-01-29'),('Weiss','Lance','Halee',1451,'1984-10-30','M','2007-11-26'),('Holmes','Brett','Hakeem',1419,'1990-02-10','F','1990-07-05'),('Olson','Martena','Beck',919,'1977-10-09','M','2010-04-22'),('Bartlett','Mason','Regina',1494,'1977-03-24','F','1999-05-24'),('Peck','Chloe','Oleg',982,'1987-12-04','F','2018-12-04');
+INSERT INTO EMP_DTS_SRC2([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Armstrong','Hunter','Lareina',961,'1975-03-25','M','2015-05-25'),('Barker','Bevis','Arthur',1170,'1977-11-13','M','2003-02-19'),('Fischer','Wang','Benedict',1010,'1979-06-07','M','2002-06-12'),('Hansen','Jonas','Noel',1475,'1985-07-04','M','2004-06-25'),('Calhoun','Ulric','Oren',1167,'1981-06-25','M','1991-08-31'),('Riddle','Candace','Declan',1404,'1987-09-28','F','2013-05-13'),('Franco','Benedict','Hashim',1281,'1989-07-03','F','1994-07-20'),('Shannon','Flynn','Brianna',1353,'1983-09-28','M','1989-09-22'),('Cooper','Macaulay','Eaton',1240,'1977-03-13','F','1992-03-15'),('Conley','Jessamine','Cedric',1416,'1983-05-23','F','2012-11-18');
+INSERT INTO EMP_DTS_SRC2([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Bond','Marny','Lacey',1340,'1977-06-23','F','2016-10-15'),('Morse','Quintessa','Omar',1130,'1983-07-14','F','2002-01-20'),('Shaffer','Eaton','May',1112,'1979-12-06','F','2019-11-12'),('French','Laura','Colorado',1146,'1990-03-05','M','2010-11-02'),('Witt','Norman','Amena',1385,'1982-03-09','M','2013-02-07'),('Cooley','Berk','Tallulah',1055,'1975-11-10','M','2004-04-22'),('Zamora','Kay','Unity',924,'1989-12-04','M','2009-07-26'),('Reilly','Michael','Ginger',1462,'1983-02-20','F','1990-04-19'),('Garza','Ezra','Matthew',1224,'1981-03-05','M','2000-11-10'),('Dickerson','Caryn','Francesca',1176,'1974-10-09','F','1995-07-11');
+INSERT INTO EMP_DTS_SRC2([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Cooley','Cooper','Rosalyn',1383,'1980-06-05','M','2009-10-26'),('Nunez','Belle','Richard',972,'1987-08-02','F','2017-11-29'),('Gomez','Armand','Nomlanga',1137,'1978-05-02','M','2014-09-13'),('Gilbert','Burke','Salvador',1082,'1976-08-24','F','2002-04-18'),('Jenkins','Noelle','Margaret',1479,'1988-05-28','M','2005-05-25'),('Mcgowan','Dana','Ramona',909,'1977-04-26','F','2017-03-10'),('Hatfield','Quinlan','Malcolm',1478,'1987-05-27','M','2009-04-11'),('Alston','Jocelyn','Brynne',1444,'1984-01-19','M','1997-09-12'),('England','Hermione','Merrill',1243,'1975-09-19','F','2014-10-11'),('Rowe','Jameson','Bertha',1351,'1978-11-18','M','1988-06-18');
+INSERT INTO EMP_DTS_SRC2([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Benjamin','Charles','Zephania',1148,'1980-08-16','M','1992-11-26'),('Anderson','Elijah','Garrison',1140,'1982-02-20','F','2007-10-31'),('Wilcox','Deacon','Violet',1141,'1981-10-05','F','2017-07-26'),('Stone','Lance','Malik',1258,'1982-12-24','M','2009-04-27'),('Suarez','Uriel','Ray',942,'1979-08-19','F','1999-09-09'),('Beck','Aretha','Josephine',1154,'1985-07-27','M','2019-11-25'),('Montgomery','Pamela','Stacey',1396,'1982-08-27','F','1988-03-03'),('Galloway','Scarlet','Clarke',1055,'1988-04-28','F','2019-07-11'),('Ford','Adrian','Lillith',1244,'1983-11-03','F','2006-04-21'),('Hurley','Kai','Jonah',1082,'1977-03-01','F','1998-09-09');
+INSERT INTO EMP_DTS_SRC2([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Johnson','Jessica','Jasmine',1368,'1986-01-29','F','1993-11-05'),('Meyer','Camilla','Patricia',1333,'1982-01-18','F','2018-06-22'),('Malone','Hedley','Kim',1048,'1979-10-17','M','1988-09-24'),('Torres','Thomas','Amena',1441,'1985-03-24','F','2000-06-08'),('Maddox','Hillary','Adam',1214,'1981-06-22','F','2001-07-02'),('Stewart','Calista','Wynter',1052,'1976-01-22','M','1992-09-26'),('Nolan','Leroy','Steven',983,'1984-12-31','M','1994-11-21'),('Stevenson','Destiny','Jenette',1085,'1975-09-08','M','2011-05-14'),('Meadows','Axel','Gary',1074,'1985-08-09','M','2003-07-07'),('Wolfe','Sara','Brett',978,'1976-12-01','M','2006-09-08');
+INSERT INTO EMP_DTS_SRC3([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Vaughn','Susan','Vernon',1332,'1979-11-06',1,'2008-12-25'),('Harding','Leila','Ursa',1178,'1982-05-02',2,'2012-08-31'),('Roberson','Emmanuel','Tyrone',1387,'1989-01-07',1,'2002-10-07'),('Beasley','Lenore','Nathaniel',1202,'1978-06-06',2,'1998-12-21'),('Dunlap','Carter','Hillary',1250,'1989-07-28',1,'2020-10-23'),('Kemp','Latifah','Paul',1372,'1975-02-15',2,'2007-10-06'),('Baldwin','Stephanie','Jana',1256,'1977-12-14',1,'1996-04-29'),('Rivers','Chava','Whilemina',1337,'1977-01-31',2,'2018-09-29'),('Pate','Christine','Vance',1082,'1981-08-18',2,'1994-08-12'),('Yang','Elijah','Bert',1279,'1980-10-23',1,'2000-12-12');
+INSERT INTO EMP_DTS_SRC3([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Norris','Kylee','Macon',1306,'1986-10-09',2,'2007-02-20'),('Bates','Aimee','Melissa',1015,'1987-10-17',1,'2016-07-07'),('Macdonald','Daryl','Melissa',1158,'1985-12-03',2,'1989-12-02'),('Blackwell','Aristotle','Aileen',1207,'1980-11-01',1,'2019-03-13'),('Wynn','Mari','Karyn',1411,'1982-01-04',2,'2013-05-24'),('Vaughn','Garrett','Ethan',935,'1987-03-04',1,'2011-10-01'),('Dunn','Nigel','Vanna',1136,'1981-12-30',2,'1999-04-21'),('Montgomery','Tanek','Reese',981,'1989-01-03',1,'2006-09-24'),('Powers','Jarrod','Sheila',923,'1976-10-24',2,'2020-03-07'),('Richard','Helen','Ali',1277,'1990-01-01',2,'1993-06-09');
+INSERT INTO EMP_DTS_SRC3([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Foreman','Shad','Mara',1106,'1988-12-11',1,'1994-10-19'),('Page','Evangeline','Rae',1124,'1987-03-12',1,'1997-11-28'),('Carey','Wilma','Regan',1358,'1982-12-16',1,'1996-05-22'),('Oneil','Britanney','Malik',1039,'1987-05-01',1,'2000-03-23'),('Sykes','Yvonne','Aspen',938,'1976-08-03',1,'1996-10-12'),('Duncan','Gregory','Laurel',983,'1983-11-06',2,'1996-08-19'),('Bolton','Martina','Leonard',1170,'1979-11-05',1,'2013-08-31'),('Reilly','Michael','Hamish',1345,'1982-05-25',1,'1992-07-27'),('Fisher','Ian','Clayton',1269,'1980-06-19',2,'1996-04-01'),('Foster','Serena','Brett',1244,'1978-08-14',1,'2010-02-01');
+INSERT INTO EMP_DTS_SRC3([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Goff','Berk','Ori',1381,'1983-04-29',2,'1987-05-31'),('Mcgee','Maya','Coby',1254,'1975-01-13',2,'1993-07-02'),('Gutierrez','Colorado','Quincy',1315,'1988-07-22',2,'2008-11-29'),('Higgins','Boris','Flynn',1017,'1987-02-03',2,'2013-08-03'),('Mcgowan','Hilel','Kendall',1342,'1985-06-26',1,'2005-09-13'),('Edwards','Samuel','Amal',1447,'1987-10-15',1,'2020-09-15'),('Webster','Carlos','Veronica',1263,'1981-03-22',2,'2010-05-01'),('Valenzuela','Hollee','Timon',951,'1984-09-11',1,'1997-08-05'),('Moon','Nathan','Kamal',1088,'1975-06-17',1,'2009-10-11'),('Davenport','Dara','Adria',1471,'1982-04-15',2,'1995-06-08');
+INSERT INTO EMP_DTS_SRC3([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('King','Lynn','Ciaran',1375,'1989-09-21',2,'2009-02-26'),('Rich','MacKensie','Justine',1167,'1975-04-09',2,'1991-05-27'),('Hendrix','Cassady','Donna',1054,'1974-09-16',1,'1998-06-27'),('Holland','Rooney','Savannah',1455,'1983-02-05',2,'2020-02-28'),('Wiggins','Raven','Keane',970,'1978-08-17',1,'1992-10-25'),('Steele','Kamal','Allistair',1493,'1980-03-11',1,'2010-09-11'),('Fleming','Reuben','Chaney',1172,'1980-03-03',2,'2017-08-19'),('Webster','Lev','Fallon',1120,'1985-10-26',2,'2011-01-13'),('Vargas','Giacomo','Kaye',1057,'1974-10-19',2,'1994-03-24'),('Cameron','Sebastian','Alea',1106,'1978-12-06',1,'2001-06-27');
+INSERT INTO EMP_DTS_SRC3([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Trujillo','Erich','Cameron',1256,'1975-06-29',2,'1996-12-21'),('Duncan','Shea','Gemma',1493,'1984-10-13',1,'2014-05-06'),('Underwood','Slade','Ingrid',1303,'1986-02-25',2,'2017-11-06'),('Leon','Lara','Sydney',1411,'1980-10-02',2,'2005-11-06'),('Rice','Jeremy','Chadwick',1144,'1978-07-27',1,'2012-01-25'),('Valentine','Walter','Elton',1131,'1979-11-25',1,'2004-08-13'),('Workman','Alfonso','Cameron',1370,'1989-12-23',1,'2000-01-19'),('Williamson','Cathleen','Tatiana',1407,'1985-09-18',2,'2007-11-13'),('Cruz','Tamekah','Roanna',1057,'1989-02-14',2,'1997-04-27'),('Mitchell','Ava','Cooper',1442,'1983-09-18',1,'2001-07-09');
+INSERT INTO EMP_DTS_SRC3([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Macias','Sonya','Sage',1198,'1978-09-06',2,'2010-09-20'),('Ratliff','Martha','Pamela',1258,'1980-06-22',2,'1990-07-07'),('Cox','Brenda','Samuel',1310,'1981-03-20',2,'2006-03-19'),('Chambers','Bryar','Bertha',1132,'1975-05-31',2,'1989-07-14'),('Rowe','Chava','Murphy',1462,'1977-11-24',2,'2005-03-26'),('Beasley','Hayfa','Kaitlin',1419,'1974-06-27',1,'2015-10-04'),('Vinson','Kylan','Clarke',1363,'1979-10-11',2,'1991-03-12'),('Cohen','Hu','Cole',1164,'1983-04-11',1,'2008-05-20'),('Stanley','Rigel','Warren',1090,'1982-11-16',2,'2004-07-15'),('Molina','Plato','Jesse',1207,'1986-04-25',2,'1992-09-07');
+INSERT INTO EMP_DTS_SRC3([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Velez','Benedict','Lyle',1291,'1977-05-20',1,'2010-05-24'),('Ramos','Kai','Gloria',1327,'1976-08-31',1,'1995-12-25'),('Rice','Maxwell','Regan',1213,'1988-11-08',1,'2014-10-26'),('Townsend','Jorden','August',981,'1981-07-23',2,'2000-08-29'),('Carr','Keane','Kermit',1220,'1984-03-14',2,'1987-10-08'),('Mccormick','Kelly','Ivory',1340,'1980-11-23',2,'2009-09-03'),('Delgado','Kai','Judith',912,'1987-12-27',2,'2011-03-08'),('Schultz','Laith','Dustin',1441,'1981-03-26',2,'2009-01-11'),('Klein','Jakeem','Beck',989,'1980-07-14',1,'1995-06-18'),('Valentine','Dai','Holmes',1430,'1977-07-03',1,'1999-12-13');
+INSERT INTO EMP_DTS_SRC3([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Roberts','Karleigh','Tucker',1471,'1980-11-20',2,'1990-09-21'),('Parrish','Burton','Rashad',1008,'1983-10-31',2,'2018-11-26'),('Dixon','Cherokee','Vivian',1420,'1989-06-10',2,'2001-10-26'),('Mckinney','Damon','Derek',1494,'1984-04-25',2,'2010-07-08'),('Dale','Judah','Quail',1227,'1979-03-07',1,'2009-06-06'),('Dean','Armando','Holly',1137,'1975-03-15',1,'1998-02-05'),('York','Clinton','Cruz',1031,'1980-04-27',1,'2017-05-21'),('Fuller','Keely','Dacey',1500,'1985-06-29',1,'1992-10-05'),('Houston','Shelby','Calista',980,'1984-12-07',2,'1989-04-15'),('Morrow','Reece','Timothy',1250,'1974-06-19',2,'1994-11-02');
+INSERT INTO EMP_DTS_SRC3([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE]) VALUES('Dominguez','Jeremy','Quinn',1040,'1975-07-18',2,'1994-08-02'),('Roberts','Russell','Tanya',1089,'1987-04-14',2,'2008-07-27'),('Whitehead','Robin','Iris',1383,'1986-05-31',2,'2019-12-13'),('Odonnell','Moana','Price',1283,'1981-05-11',2,'2012-01-11'),('Berry','Quin','Basia',1183,'1985-04-09',1,'2006-01-29'),('Bowers','Kadeem','Sandra',989,'1981-08-15',1,'2006-12-26'),('Lott','MacKensie','Heidi',1148,'1979-09-09',1,'2002-05-08'),('Farrell','Fuller','Paula',1154,'1989-09-14',1,'1987-07-28'),('Gardner','Martina','Caesar',1391,'1974-10-28',1,'2006-03-01'),('Bolton','Naomi','Harper',1407,'1975-12-28',1,'2000-08-28');
+
+
+--generatedata.com
+--************TESTING SCRIPT FOR "EMP_DTS_SRC1" table******************************
+
+--1) Validate ETL Run
+
+--Execute ETL Code
+EXEC Emp_ETL_Code;
+
+--Check the data in Taregt Table
+Select * from EMP_DTS_TRG;
+
+
+--2) Validate record count between 'EMP_DTS_SRC1' table and 'EMP_DTS_TRG' Table.
+
+--Check data in source table
+Select count(*) as Count_of_Source from EMP_DTS_SRC1
+Where EMP_SALARY >= 1000;
+
+--Check data in as target table
+Select count(*) as Count_of_Target from EMP_DTS_TRG
+Where REFERENCE_TABLE = 'EMP_DTS_SRC1';
+
+
+
+--3) Validate null count between 'EMP_DTS_SRC1' table and 'EMP_DTS_TRG' Table.
+
+--Execute ETL Code
+EXEC Emp_ETL_Code;
+
+
+--Check null counts in source table
+Select Count(*)-Count(ID)Count_of_ID,
+Count(*)-Count(EMP_CODE)Count_of_EMP_CODE,
+Count(*)-Count(LAST_NAME)Count_of_LAST_NAME,
+Count(*)-Count(FIRST_NAME)Count_of_FIRST_NAME,
+Count(*)-Count(MIDDLE_NAME)Count_of_MIDDLE_NAME,
+Count(*)-Count(EMP_SALARY)Count_of_EMP_SALARY,
+Count(*)-Count(EMP_DOB)Count_of_EMP_DOB,
+Count(*)-Count(EMP_GENDER)Count_of_EMP_GENDER,
+Count(*)-Count(HIRE_DATE)Count_of_HIRE_DATE,
+Count(*)-Count(Created_On)Count_of_Created_On,
+Count(*)-Count(Modified_On)Count_of_Modified_On
+from EMP_DTS_SRC1
+Where EMP_SALARY >= 1000;
+
+
+select Count(*)-Count(EMP_Key)Count_of_EMP_Key,
+Count(*)-Count(EMP_CODE)Count_of_EMP_CODE,
+Count(*)-Count(EMP_NAME)Count_of_EMP_NAME,
+Count(*)-Count(EMP_SALARY)Count_of_EMP_SALARY,
+Count(*)-Count(EMP_DOB)Count_of_EMP_DOB,
+Count(*)-Count(EMP_GENDER)Count_of_EMP_GENDER,
+Count(*)-Count(HIRE_DATE)Count_of_HIRE_DATE,
+Count(*)-Count(TOTAL_EXP)Count_of_TOTAL_EXP,
+Count(*)-Count(REFERENCE_TABLE)Count_of_REFERENCE_TABLE,
+Count(*)-Count(ETLUpdateTime)Count_of_ETLUpdateTime,
+Count(*)-Count(Created_On)Count_of_Created_On,
+Count(*)-Count(Modified_On)Count_of_Modified_On
+ from EMP_DTS_TRG
+Where REFERENCE_TABLE = 'EMP_DTS_SRC1';
+
+
+
+--4) Validate duplicate records in 'EMP_DTS_TRG' table
+
+Select * from EMP_DTS_TRG
+Where REFERENCE_TABLE = 'EMP_DTS_SRC1'
+Group By EMP_Key,EMP_CODE,EMP_NAME,EMP_SALARY,EMP_DOB,EMP_GENDER,HIRE_DATE,TOTAL_EXP,REFERENCE_TABLE,ETLUpdateTime,Created_On,Modified_On
+Having count(*) >1;
+
+
+--5) Validate rejected data in 'EMP_DTS_TRG' table. EMP_SALARY < 1000
+
+--Sample data case
+
+--Insert rejected data in source table
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE])
+VALUES('Anderson','Slade','Jakeem',999,'1989-09-30','Female','2016-07-19')
+
+--Check the data in source table
+Select * from EMP_DTS_SRC1;
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+--Check the data in target table
+Select * from EMP_DTS_TRG
+
+
+--Bulk Data
+
+--Check the data in source table
+Select * from EMP_DTS_SRC1
+where EMP_SALARY <1000 ; 
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+--Check the data in target table
+Select * from EMP_DTS_TRG
+where EMP_SALARY <1000 and REFERENCE_TABLE = 'EMP_DTS_SRC1' ; 
+
+
+
+--6) Validate 1:1: data transformations of below column:
+--EMP_CODE,EMP_DOB,HIRE_DATE,Created_On,Modified_On in  'EMP_DTS_TRG' table.
+
+--To Truncate data in all table
+Truncate Table EMP_DTS_SRC1 ;
+Truncate Table EMP_DTS_SRC2 ;
+Truncate Table EMP_DTS_SRC3 ;
+Truncate Table EMP_DTS_STG ;
+Truncate Table EMP_DTS_TRG ;
+
+
+--Sample data case
+
+--Insert rejected data in source table
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE])
+VALUES('Anderson','Slade','Jakeem',1999,'1989-09-30','Female','2016-07-19')
+
+--Check the data in source table
+Select EMP_CODE,EMP_DOB,HIRE_DATE,Created_On,Modified_On from EMP_DTS_SRC1
+where EMP_SALARY >=1000 ; 
+
+--Execute the ETL-CODE
+--EXEC EMP_ETL_CODE;
+
+--Check the data in target table
+Select EMP_CODE,EMP_DOB,HIRE_DATE,Created_On,Modified_On  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ; 
+
+
+--Bulk Data
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+
+--Check the data in source and  target table
+Select EMP_CODE,EMP_DOB,HIRE_DATE,Created_On,Modified_On from EMP_DTS_SRC1
+where EMP_SALARY >=1000 
+Except
+Select EMP_CODE,EMP_DOB,HIRE_DATE,Created_On,Modified_On  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ; 
+
+
+--Check the data in source and  target table
+Select EMP_CODE,EMP_DOB,HIRE_DATE,Created_On,Modified_On  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' 
+except
+Select EMP_CODE,EMP_DOB,HIRE_DATE,Created_On,Modified_On from EMP_DTS_SRC1
+where EMP_SALARY >=1000;
+
+
+
+--7) Validate concatenation transformation for 'EMP_NAME' column when 'Middle_Name' is present.
+
+--To Truncate data in all table
+Truncate Table EMP_DTS_SRC1 ;
+Truncate Table EMP_DTS_SRC2 ;
+Truncate Table EMP_DTS_SRC3 ;
+Truncate Table EMP_DTS_STG ;
+Truncate Table EMP_DTS_TRG ;
+
+
+--Sample Data
+
+--Insert rejected data in source table
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE])
+VALUES('Anderson','Slade','Jakeem',1999,'1989-09-30','Female','2016-07-19')
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+--Check the data in source table
+Select EMP_CODE, [LAST_NAME],[FIRST_NAME],[MIDDLE_NAME] from EMP_DTS_SRC1
+where EMP_SALARY >=1000 ; 
+
+
+--Check the data in target table
+Select EMP_CODE,EMP_NAME  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ; 
+
+
+--Bulk Data
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+
+--Check the data in source and  target table
+Select EMP_CODE, (LAST_NAME+ ' ' + FIRST_NAME+ ' ' + MIDDLE_NAME)EMP_NAME from EMP_DTS_SRC1
+where EMP_SALARY >=1000 
+Except
+Select EMP_CODE,EMP_NAME  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ; 
+
+
+
+--Check the data in source and  target table
+Select EMP_CODE,EMP_NAME  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' 
+Except
+Select EMP_CODE, (LAST_NAME+ ' ' + FIRST_NAME+ ' ' + MIDDLE_NAME)EMP_NAME from EMP_DTS_SRC1
+where EMP_SALARY >=1000 
+
+
+
+--8) Validate concatenation transformation for 'EMP_NAME' column when 'Middle_Name' is not present.
+
+
+--To Truncate data in all table
+Truncate Table EMP_DTS_SRC1 ;
+Truncate Table EMP_DTS_SRC2 ;
+Truncate Table EMP_DTS_SRC3 ;
+Truncate Table EMP_DTS_STG ;
+Truncate Table EMP_DTS_TRG ;
+
+
+--Sample Data
+
+--Insert rejected data in source table
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE])
+VALUES('Anderson','Slade', Null ,1999,'1989-09-30','Female','2016-07-19')
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+--Check the data in source table
+Select EMP_CODE, [LAST_NAME],[FIRST_NAME],[MIDDLE_NAME] from EMP_DTS_SRC1
+where EMP_SALARY >=1000 ; 
+
+
+--Check the data in stagging table
+Select EMP_CODE, EMP_NAME  from EMP_DTS_STG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ;
+
+
+--Check the data in target table
+Select EMP_CODE,EMP_NAME  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ;
+
+
+
+
+--Bulk Data
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+
+--Check the data in source and  target table
+Select EMP_CODE, (LAST_NAME+ ' ' + FIRST_NAME+ ' ' + isnull(MIDDLE_NAME,'')) EMP_NAME from EMP_DTS_SRC1
+where EMP_SALARY >=1000 
+--Except
+Select EMP_CODE,EMP_NAME  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ; 
+
+
+
+--Check the data in source and  target table
+Select EMP_CODE, EMP_NAME  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' 
+Except
+Select EMP_CODE, (LAST_NAME+ ' ' + FIRST_NAME+ ' ' + isnull(MIDDLE_NAME,''))EMP_NAME from EMP_DTS_SRC1
+where EMP_SALARY >=1000 
+
+
+
+--9) Validate filter transformation for 'EMP_SALARY' column when 'EMP_SALARY' = 1000
+--10) Validate filter transformation for 'EMP_SALARY' column when 'EMP_SALARY' > 1000
+
+--To Truncate data in all table
+Truncate Table EMP_DTS_SRC1 ;
+Truncate Table EMP_DTS_SRC2 ;
+Truncate Table EMP_DTS_SRC3 ;
+Truncate Table EMP_DTS_STG ;
+Truncate Table EMP_DTS_TRG ;
+
+
+--Sample Data
+
+--Insert rejected data in source table
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE])
+VALUES('Anderson','Slade', 'E' ,1000,'1989-09-30','Female','2016-07-19')
+
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE])
+VALUES('W','Sara', 'E' ,1001,'1989-09-30','Female','2016-07-19');
+
+
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+--Check the data in source table
+Select EMP_CODE, EMP_SALARY from EMP_DTS_SRC1
+where EMP_SALARY >=1000 ; 
+
+
+--Check the data in stagging table
+Select EMP_CODE, EMP_SALARY  from EMP_DTS_STG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ;
+
+
+--Check the data in target table
+Select EMP_CODE, EMP_SALARY  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ;
+
+
+
+
+--Bulk Data
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+
+--Check the data in source and  target table
+Select EMP_CODE, EMP_SALARY  from EMP_DTS_SRC1
+where EMP_SALARY >=1000 
+Except
+Select EMP_CODE, EMP_SALARY   from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ; 
+
+
+
+--Check the data in source and  target table
+Select EMP_CODE, EMP_SALARY  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' 
+Except
+Select EMP_CODE, EMP_SALARY  from EMP_DTS_SRC1
+where EMP_SALARY >=1000 
+
+
+
+
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+--Check the data in source table
+Select EMP_CODE, EMP_SALARY from EMP_DTS_SRC1
+where EMP_SALARY = 1000 and EMP_CODE = 'EMP01'; 
+
+
+--Check the data in stagging table
+Select EMP_CODE, EMP_SALARY  from EMP_DTS_TRG
+where EMP_CODE = 'EMP01';
+
+
+--Check the data in source table
+Select EMP_CODE, EMP_SALARY from EMP_DTS_SRC1
+where EMP_SALARY > 1000 and EMP_CODE = 'EMP0100'; 
+
+
+--Check the data in stagging table
+Select EMP_CODE, EMP_SALARY  from EMP_DTS_TRG
+where EMP_CODE = 'EMP0100';
+
+
+
+--11) Validate data conversion transformation for 'EMP_Gender' column for Male to M
+--12) Validate data conversion transformation for 'EMP_Gender' column for Female to F
+
+--To Truncate data in all table
+Truncate Table EMP_DTS_SRC1 ;
+Truncate Table EMP_DTS_SRC2 ;
+Truncate Table EMP_DTS_SRC3 ;
+Truncate Table EMP_DTS_STG ;
+Truncate Table EMP_DTS_TRG ;
+
+
+--Sample Data
+
+--Insert rejected data in source table
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE])
+VALUES('Anderson','Slade', 'E' ,1000,'1989-09-30','Female','2016-07-19')
+
+INSERT INTO EMP_DTS_SRC1([LAST_NAME],[FIRST_NAME],[MIDDLE_NAME],[EMP_SALARY],[EMP_DOB],[EMP_GENDER],[HIRE_DATE])
+VALUES('W','Sara', 'E' ,1001,'1989-09-30','Male','2016-07-19');
+
+
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+--Check the data in source table
+Select EMP_CODE, EMP_GENDER from EMP_DTS_SRC1
+where EMP_SALARY >=1000 ; 
+
+
+--Check the data in stagging table
+Select EMP_CODE, EMP_GENDER  from EMP_DTS_STG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ;
+
+
+--Check the data in target table
+Select EMP_CODE, EMP_GENDER  from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ;
+
+
+
+
+--Bulk Data
+
+--Execute the ETL-CODE
+EXEC EMP_ETL_CODE;
+
+
+--Check the data in source and  target table
+Select EMP_CODE, 
+(Case 
+when EMP_GENDER = 'Male' then 'M'
+when EMP_GENDER = 'Female' then 'F'
+End) as EMP_GENDER
+from EMP_DTS_SRC1
+where EMP_SALARY >=1000 
+
+Except
+Select EMP_CODE, EMP_GENDER   from EMP_DTS_TRG
+where REFERENCE_TABLE = 'EMP_DTS_SRC1' ; 
