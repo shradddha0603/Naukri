@@ -1,0 +1,55 @@
+--Normal Case
+Select count(*)as Count_Source from SP_ETL.dbo.CUstomer_SRC;
+Select count(*)as Count_Target from SP_ETL.dbo.CUstomer_TRG;
+
+
+--filters case
+Select * from EMP_DTS_SRC1
+Select * from EMP_DTS_TRG;
+
+
+Select count(*)as Count_Source from EMP_DTS_SRC1 -- >1000
+where EMP_SALARY >=1000 ;
+
+Select count(*)as Count_Target from EMP_DTS_TRG ; -- <1000
+
+
+
+-- Incremental/historical data load case
+
+Select * from SP_ETL.dbo.CUstomer_SRC;
+
+Select * from SP_ETL.dbo.CUstomer_TRG
+where CUSTOMERKEY in (Select Max(CUSTOMERKEY) from SP_ETL.dbo.CUstomer_TRG Group By CUstomerID);
+
+
+--Wrong
+Select count(*)as Count_Source from SP_ETL.dbo.CUstomer_SRC;
+Select count(*)as Count_Target from SP_ETL.dbo.CUstomer_TRG;
+
+
+--Correct
+Select count(*)as Count_Source from SP_ETL.dbo.CUstomer_SRC;
+Select count(*)as Count_Target from SP_ETL.dbo.CUstomer_TRG
+where CUSTOMERKEY in (Select Max(CUSTOMERKEY) from SP_ETL.dbo.CUstomer_TRG Group By CUstomerID);
+
+
+
+-------Null Records--------
+
+Select * from SP_ETL.dbo.CUstomer_SRC;
+Select * from SP_ETL.dbo.CUstomer_TRG;
+
+---------------------------------------------------------
+Select (Count(*) - Count(FULLNAME))NULL_COUNT_FULLNAME,
+(Count(*) - Count(BIRTHDATE))NULL_COUNT_BIRTHDATE,
+(Count(*) - Count(MARITALSTATUS))NULL_COUNT_MARITALSTATUS,
+(Count(*) - Count(GENDER))NULL_COUNT_GENDER
+from SP_ETL.dbo.CUstomer_SRC;
+
+Select (Count(*) - Count(FULLNAME))NULL_COUNT_FULLNAME,
+(Count(*) - Count(BIRTHDATE))NULL_COUNT_BIRTHDATE,
+(Count(*) - Count(MARITALSTATUS))NULL_COUNT_MARITALSTATUS,
+(Count(*) - Count(GENDER))NULL_COUNT_GENDER
+from SP_ETL.dbo.CUstomer_TRG;
+---------------------------------------------------------
